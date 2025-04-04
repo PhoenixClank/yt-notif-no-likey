@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	"name": "YT Notif No Likey",
+	"version": "1.0",
+	"icons": {
+		"48": "icons/outline_thumb_down_alt_black_48dp_1x.png",
+		"96": "icons/outline_thumb_down_alt_black_48dp_2x.png"
+	},
+	"description": "No more notifications about Likes on your YouTube comments. YouTube collapsed the “replies to my comments” and “activity on my comments” notification options into a signle one. This extension filters out the latter so that you only get notified about the former. Unfortunately, I can’t see a way to modify the number that gets displayed on the notification bell icon in the same way.",
+	"permissions": [
+		"https://www.youtube.com/*",
+		"webRequest",
+		"webRequestBlocking"
+	],
+	"background": {
+		"persistent": false,
+		"scripts": [
+			"scripts/background.js"
+		]
+	}
+}
