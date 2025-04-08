@@ -1,5 +1,7 @@
+const re = /^👍 Someone liked your (?:comment|reply)/u;
+
 function notificationMenuItemFilter(item) {
-	return !(Object.hasOwn(item, "notificationRenderer") && item.notificationRenderer.shortMessage.simpleText.startsWith("👍 Someone liked your comment"));
+	return !(Object.hasOwn(item, "notificationRenderer") && re.test(item.notificationRenderer.shortMessage.simpleText));
 }
 
 browser.webRequest.onBeforeRequest.addListener(details => {
