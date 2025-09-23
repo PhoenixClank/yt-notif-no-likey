@@ -1,7 +1,7 @@
 const re = /^👍 Someone liked your (?:comment|reply)/u;
 
 function notificationMenuItemFilter(item) {
-	return !(Object.hasOwn(item, "notificationRenderer") && re.test(item.notificationRenderer.shortMessage.simpleText));
+	return !(Object.hasOwn(item, "notificationRenderer") && re.test(item.notificationRenderer.shortMessage.runs[0].text));
 }
 
 browser.webRequest.onBeforeRequest.addListener(details => {
