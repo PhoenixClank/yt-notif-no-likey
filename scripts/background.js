@@ -1,7 +1,7 @@
-const re = /^👍 Someone liked your (?:comment|reply)/u;
+const notifText = "You got a like: \""
 
 function notificationMenuItemFilter(item) {
-	return !(Object.hasOwn(item, "notificationRenderer") && re.test(item.notificationRenderer.shortMessage.runs[0].text));
+	return !(Object.hasOwn(item, "notificationRenderer") && item.notificationRenderer.shortMessage.runs[0].text == notifText);
 }
 
 browser.webRequest.onBeforeRequest.addListener(details => {
