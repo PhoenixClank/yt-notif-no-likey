@@ -1,7 +1,12 @@
-const notifText = "You got a like: \""
+const reSingleRun = /^(?:👍 Someone liked your (?:comment|reply)|You got a like): "/;
+const reNumber = /^\d+$/;
 
 function notificationMenuItemFilter(item) {
-	return !(Object.hasOwn(item, "notificationRenderer") && item.notificationRenderer.shortMessage.runs[0].text == notifText);
+	return !(Object.hasOwn(item, "notificationRenderer") && ((
+		item.notificationRenderer.shortMessage.runs[0].text == "You got "
+		&& reNumber.test(item.notificationRenderer.shortMessage.runs[1].text)
+		&& item.notificationRenderer.shortMessage.runs[2].text == " likes: \""
+	) || reSingleRun.test(item.notificationRenderer.shortMessage.runs[0].text)));
 }
 
 browser.webRequest.onBeforeRequest.addListener(details => {
